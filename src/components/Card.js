@@ -4,6 +4,9 @@ import { RiSpotifyLine, RiThreadsFill } from "react-icons/ri";
 import { PiTelegramLogo } from "react-icons/pi";
 import { Mouse_Memoirs } from "next/font/google";
 import { motion } from "framer-motion";
+import Image from "next/image";
+
+import logo from "@/images/ss.png";
 
 const mouse_memoirs = Mouse_Memoirs({
     subsets: ["latin"],
@@ -36,6 +39,8 @@ const links = [
     },
 ];
 
+const title = "Supercluster";
+
 function Card() {
     return (
         <motion.div
@@ -43,25 +48,58 @@ function Card() {
             initial={{ top: 15, height: "14rem" }}
             animate={{ top: "-4rem", height: "110%" }}
             transition={{
-                delay: 0.9,
+                delay: 1.4,
                 type: "spring",
-                delayChildren: 2,
-                staggerChildren: 2,
             }}
         >
-            <div className="shadow-2xl rounded-md w-[10rem] h-[10rem] bg-white mx-auto overflow-hidden">
-                <img
-                    src="https://via.assets.so/img.jpg?w=400&h=400&tc=blue"
+            <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{
+                    type: "spring",
+                }}
+                className="shadow-2xl rounded-md w-[10rem] h-[10rem] bg-white mx-auto overflow-hidden"
+            >
+                <Image
+                    src={logo}
+                    alt="logo"
+                    loading="lazy"
                     className="w-full h-full object-cover"
                 />
-            </div>
+            </motion.div>
 
             <motion.div className="mt-5">
-                <h1
+                <motion.h1
+                    initial="hidden"
+                    animate="visible"
+                    variants={{
+                        hidden: { opacity: 0, scale: 0 },
+                        visible: {
+                            opacity: 1,
+                            scale: 1,
+                            transition: {
+                                delay: 0.2,
+                                staggerChildren: 0.1,
+                            },
+                        },
+                    }}
                     className={`${mouse_memoirs.className} font-bold text-3xl mb-3`}
                 >
-                    Supercluster
-                </h1>
+                    {title.split("").map((char, i) => {
+                        return (
+                            <motion.span
+                                variants={{
+                                    hidden: { opacity: 0, scale: 0 },
+                                    visible: { opacity: 1, scale: 1 },
+                                }}
+                                key={i}
+                                className="inline-block"
+                            >
+                                {char}
+                            </motion.span>
+                        );
+                    })}
+                </motion.h1>
                 <motion.p
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}

@@ -10,7 +10,7 @@ export default function Home() {
                 className="text-center bg-white px-3 rounded-md shadow-xl"
                 initial={{ height: "15rem" }}
                 animate={{ height: "auto" }}
-                transition={{ delay: 1, type: "spring" }}
+                transition={{ delay: 1.5, type: "spring" }}
             >
                 <Card />
             </motion.div>
